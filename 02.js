@@ -1,19 +1,10 @@
-function oddOccurrences(str) {
-    let wordOccurrences = new Map();
-    let words = str.toLowerCase().split(' ');
+function solve(city) {
+    let keys = Object.keys(city);
 
-    for (let word of words) {
-        if (wordOccurrences.has(word)) {
-            let currentOccurrences = wordOccurrences.get(word);
-            wordOccurrences.set(word, currentOccurrences + 1);
-        }
-        else {
-            wordOccurrences.set(word, 1);
-        }
+    for (let key of keys ) {
+        let value = city[key];
+        console.log(`${key} -> ${value}`);
+        
     }
-    let entries = Array.from(wordOccurrences.entries()).filter(entry => entry[1] % 2 !== 0);
-
-    let filteredWords = entries.map(entry => entry[0]);
-    console.log(filteredWords.join(' '));
 }
-oddOccurrences('Java C# Php PHP Java PhP 3 C# 3 1 5 C#');
+solve({ name: "Plovdiv", area: 389, population: 1162358, country: "Bulgaria", postCode: "4000" });

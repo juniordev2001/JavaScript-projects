@@ -1,23 +1,22 @@
-function parkingLot(arr) {
-    let parkedCars = new Set();
-    
-    for (let command of arr) {
-        let [direction, carNumber] = command.split(', ');
+function passwordGenerator(arr) {
+    let [str1, str2, replacementStr] = arr;
+    let concatStr = str1 + str2;
 
-         if (direction == 'IN') {
-            parkedCars.add(carNumber);
-         }
-         else {
-            parkedCars.delete(carNumber);
-         }
+    let vowels = ['a', 'e', 'o', 'i', 'u'];
+    let idx = 0;
+
+    for (let char of concatStr) {
+        if (vowels.includes(char)) {
+            concatStr = concatStr.replace(char, replacementStr[idx].toUpperCase());
+            idx++;
+
+            if (idx == replacementStr.length) {
+                idx = 0;
+            }
+        }
     }
-
-    let carsArr = Array.from(parkedCars).sort((a, b) => a.localeCompare(b));
-        if (carsArr.length == 0) {
-            console.log('Parking Lot is Empty!');
-        }
-        else {
-            console.log(carsArr.join('\n'));
-        }
+    let finalPassword = concatStr.split('').reverse().join('');
+    console.log(`Your generated password is ${finalPassword}`);
+    
 }
-parkingLot(['IN, CA2844AA', 'IN, CA1234TA', 'OUT, CA2844AA', 'IN, CA9999TT', 'IN, CA2866HI', 'OUT, CA1234TA', 'IN, CA2844AA', 'OUT, CA2866HI', 'IN, CA9876HH', 'IN, CA2822UU']);
+passwordGenerator(['ilovepizza','ihatevegetables','orange']);

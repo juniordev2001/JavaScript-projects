@@ -1,19 +1,14 @@
-function oddOccurrences(str) {
-    let wordOccurrences = new Map();
-    let words = str.toLowerCase().split(' ');
+function finishLetter(arr) {
+    let [letter, wordsToFill] = arr;
+    wordsToFill.sort((a, b) => b.length - a.length);
 
-    for (let word of words) {
-        if (wordOccurrences.has(word)) {
-            let currentOccurrences = wordOccurrences.get(word);
-            wordOccurrences.set(word, currentOccurrences + 1);
-        }
-        else {
-            wordOccurrences.set(word, 1);
-        }
+    for (let word of wordsToFill) {
+        let underscoreTemplate = '_'.repeat(word.length);
+        
+        letter = letter.replace(underscoreTemplate, word);
+        
     }
-    let entries = Array.from(wordOccurrences.entries()).filter(entry => entry[1] % 2 !== 0);
-
-    let filteredWords = entries.map(entry => entry[0]);
-    console.log(filteredWords.join(' '));
+    console.log(letter);
+    
 }
-oddOccurrences('Java C# Php PHP Java PhP 3 C# 3 1 5 C#');
+finishLetter(['Hi, grandma! I\'m so ____ to write to you. ______ the winter vacation, so _______ things happened. My dad bought me a sled. Mom started a new job as a __________. My brother\'s ankle is ________, and now it bothers me even more. Every night Mom cooks ___ on your recipe because it is the most delicious. I hope this year Santa will _____ me a robot.', ['pie', 'bring', 'glad', 'During', 'amazing', 'pharmacist', 'sprained']])
